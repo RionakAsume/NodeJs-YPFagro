@@ -45,7 +45,7 @@ const server=express();
 server.use(express.json());
 server.use(cookieParser());
 server.use(cors({
-    origin: 'https://react-ypf.vercel.app',
+    origin: 'https://react-kwi8msld5-rionaks-projects.vercel.app',
     credentials:true,
 }));
 
