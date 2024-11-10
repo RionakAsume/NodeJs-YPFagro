@@ -80,9 +80,18 @@ export const login = async (req, res) => {
         if (!isMatch) return res.status(404).json(["Contraseña incorrecta"]);
 
 
+        // jwt.sign({
+        //     id: userFound.id,
+        // }, process.env.TOKEN_SECRET, {
+        //     expiresIn: "1d",
+        // }, (err, token) => {
+        //     if (err) console.log(err);
+        //     res.cookie('token', token);
+        //     res.send(userFound);
+        // });
         jwt.sign({
             id: userFound.id,
-        }, process.env.TOKEN_SECRET, {
+        }, "some secret key", {
             expiresIn: "1d",
         }, (err, token) => {
             if (err) console.log(err);
@@ -130,7 +139,23 @@ export const verify = async (req, res) => {
     if (!token) return res.status(401).json(['No autorizado'])
 
 
-    jwt.verify(token, process.env.TOKEN_SECRET, async (err, user) => {
+    // jwt.verify(token, process.env.TOKEN_SECRET, async (err, user) => {
+    //     if (err) return res.status(401).json(['No autorizado'])
+
+    //     const userFound = await User.findByPk(user.id)
+    //     if (!userFound) return res.status(401).json(['No autorizado'])
+
+
+    //     return res.json({
+    //         id: userFound.dataValues.id,
+    //         full_name: userFound.dataValues.full_name,
+    //         surname: userFound.dataValues.full_name,
+    //         email: userFound.dataValues.email,
+    //         roleId: userFound.dataValues.roleId,
+    //         CreatedAt: userFound.dataValues.CreatedAt
+    //     })
+    // })
+    jwt.verify(token, "some secret key", async (err, user) => {
         if (err) return res.status(401).json(['No autorizado'])
 
         const userFound = await User.findByPk(user.id)
