@@ -45,9 +45,21 @@ const server=express();
 server.use(express.json());
 server.use(cookieParser());
 
+// server.use(cors({
+//     origin: 'https://react-2sps6n7dk-rionaks-projects.vercel.app' ,
+//     credentials:true,
+// }));
+
+const allowedOrigins = ['https://react-2sps6n7dk-rionaks-projects.vercel.app', 'https://react-ypf-git-main-rionaks-projects.vercel.app'];
 server.use(cors({
-    origin: 'https://react-2sps6n7dk-rionaks-projects.vercel.app',
-    credentials:true,
+    origin: function (origin, callback) {
+        if (allowedOrigins.includes(origin) || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true,
 }));
 
 server.use('/api/',authRoutes)
