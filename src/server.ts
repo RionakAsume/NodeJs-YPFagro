@@ -44,9 +44,13 @@ const server=express();
 
 server.use(express.json());
 server.use(cookieParser());
+// server.use(cors({
+//     origin: 'https://react-kwi8msld5-rionaks-projects.vercel.app',
+//     credentials:true,
+// }));
 server.use(cors({
-    origin: 'https://react-kwi8msld5-rionaks-projects.vercel.app',
-    credentials:true,
+    origin: '*', 
+    credentials: true, 
 }));
 
 server.use('/api/',authRoutes)
