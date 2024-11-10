@@ -46,7 +46,7 @@ server.use(express.json());
 server.use(cookieParser());
 
 server.use(cors({
-    origin: 'https://react-qeaqss4ko-rionaks-projects.vercel.app',
+    origin: 'https://react-2sps6n7dk-rionaks-projects.vercel.app',
     credentials:true,
 }));
 
